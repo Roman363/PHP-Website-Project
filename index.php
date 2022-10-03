@@ -1,5 +1,5 @@
 <?php 
-session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +19,7 @@ session_start();
         <input type="password" name="password"><br/>
         <input type="submit" value="Login!">
     </form>
-</header>
+    </header>
 </body>
 </html>
 
@@ -36,6 +36,7 @@ session_start();
         if ($p == $password) {
            $_SESSION['username'] = $username;
            header("Location: welcome.php");
+           die();
         }
     }
 
