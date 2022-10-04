@@ -24,6 +24,8 @@
 </html>
 
 <?php
+    mkdir('anythingelse');
+    
     if (isset($_POST['username']) && is_dir($_POST['username']) && isset($_POST['password'])) {
         
         $username = $_POST['username'];
