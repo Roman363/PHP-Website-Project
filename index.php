@@ -19,17 +19,41 @@
         <input type="password" name="password"><br/>
         <input type="submit" value="Login!">
     </form>
+    <form method="post">
+        <p>Username:<br/></p>
+        <input type="text" name="new_username"><br/>
+        <p>Password:<br/></p>
+        <input type="password" name="new_password"><br/>
+        <input type="submit" value="Create a Account!">
+    </form>
     </header>
 </body>
 </html>
 
 <?php
-    mkdir('anythingelse');
-    
-    if (isset($_POST['username']) && is_dir($_POST['username']) && isset($_POST['password'])) {
+    if (isset($_POST['new_username']) && isset($_POST['new_password'])) {
+        if (is_dir($_POST['new_username'])) {
+            echo "User already exists";
+        }
+        else {
+            mkdir($_POST['new_username']);
+            $new_username = $_POST['new_username'];
+            $password= $_POST['new_password'];
+            $somefolder = fopen("$new_username/password.txt", "w");
+            fwrite($somefolder, $password);
+            fclose($somefolder);
+            header("refresh: 0");
+        }
+    }
+       
+?>
+
+<?php
+
+    if (isset($_REQUEST['username']) && is_dir($_REQUEST['username']) && isset($_REQUEST['password'])) {
         
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $username = $_REQUEST['username'];
+        $password = $_REQUEST['password'];
 
         $fileinfo = fopen("$username/password.txt", "r");
         $p = fgets($fileinfo);
@@ -42,4 +66,7 @@
         }
     }
 
+
 ?>
+
+
